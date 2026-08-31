@@ -31,21 +31,21 @@ const opportunitySchema = new mongoose.Schema(
       required: true
     },
 
-    requiredSkills: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
+    requiredSkills: {
+      type: [String],
+      required: true
+    },
 
     location: {
       type: String,
+      required: true,
       trim: true
     },
 
     workArrangement: {
       type: String,
-      enum: ["On-site", "Remote", "Hybrid"]
+      enum: ["On-site", "Remote", "Hybrid"],
+      required: true
     },
 
     deadline: {
