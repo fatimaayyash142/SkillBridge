@@ -1,0 +1,37 @@
+$kind: http-request
+name: http://localhost:3000/api/opportunities
+description: ""
+url: http://localhost:3000/api/opportunities
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Data Analyst Internship\",\r
+
+    \  \"description\": \"Join our data analysis team.\",\r
+
+    \  \"type\": \"Internship\",\r
+
+    \  \"requiredSkills\": [\r
+
+    \    \"Excel\",\r
+
+    \    \"SQL\",\r
+
+    \    \"Power BI\"\r
+
+    \  ],\r
+
+    \  \"location\": \"Beirut\",\r
+
+    \  \"workArrangement\": \"Hybrid\",\r
+
+    \  \"deadline\": \"2026-10-30\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0zy8}}"
+order: 4455738863956409

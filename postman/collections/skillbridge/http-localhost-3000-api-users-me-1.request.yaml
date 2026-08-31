@@ -1,0 +1,23 @@
+$kind: http-request
+name: http://localhost:3000/api/users/me
+description: ""
+url: http://localhost:3000/api/users/me
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"phone\": \"71123456\",\r
+
+    \  \"educationLevel\": \"Undergraduate\",\r
+
+    \  \"major\": \"Management Information Systems\",\r
+
+    \  \"university\": \"USAL\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{supabase_service_role_api_key_1dmy}}"
+order: 4362294873573170
