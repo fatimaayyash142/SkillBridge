@@ -102,7 +102,10 @@ exports.login = async (req, res) => {
     }
 
 
-    const currentUser = await User.findOne({ email: email.toLowerCase() }).select("+password");
+    const currentUser = await User.findOne({
+  email: email.toLowerCase(),
+  role: { $in: ["Candidate", "Organization"] }
+}).select("+password");
 
 
     if (!currentUser) {

@@ -1,19 +1,25 @@
 const Opportunity = require("../models/opportunityModel");
 
-// Create a new opportunity
+
 exports.createOpportunity = async (req, res) => {
   try {
     const { title, description, type, requiredSkills, location, workArrangement, deadline } = req.body;
 
-    // Validate that all required fields are present
-    if (!title || !description || !type || !deadline) {
-      return res.status(400).json({
-        message: "Please provide all required fields: title, description, type, and deadline"
-      });
-    }
+    
+    if (
+  !title ||
+  !description ||
+  !type ||
+  !location ||
+  !workArrangement ||
+  !deadline
+) {
+  return res.status(400).json({
+    message:
+      "Please provide title, description, type, location, work arrangement, and deadline"
+  });
+}
 
-    // Create the opportunity in database
-    // organizationId comes from the authenticated user
     const newOpportunity = await Opportunity.create({
       organizationId: req.user._id,
       title: title,
@@ -43,22 +49,32 @@ exports.createOpportunity = async (req, res) => {
   }
 };
 
-// Get all published opportunities
-exports.getAllOpportunities = async (req, res) => {
+exports.getOpportunity = async (req, res) => {
   try {
-    // Only show published opportunities
-    const opportunities = await Opportunity.find({ status: "Published" })
-      .populate("organizationId", "name email phone website description");
+    const opportunityId = req.params.id;
+
+    const opportunity = await Opportunity.findOne({
+      _id: opportunityId,
+      status: "Published"
+    }).populate(
+      "organizationId",
+      "name email phone website description"
+    );
+
+    if (!opportunity) {
+      return res.status(404).json({
+        message: "Published opportunity not found"
+      });
+    }
 
     res.status(200).json({
       status: "success",
-      results: opportunities.length,
       data: {
-        opportunities: opportunities
+        opportunity: opportunity
       }
     });
   } catch (err) {
-    console.log("Error getting opportunities:", err.message);
+    console.log("Error getting opportunity:", err.message);
     res.status(500).json({
       status: "error",
       message: err.message
@@ -102,7 +118,7 @@ exports.getOpportunity = async (req, res) => {
   try {
     const opportunityId = req.params.id;
 
-    // Get opportunity and populate organization details
+    
     const opportunity = await Opportunity.findById(opportunityId)
       .populate("organizationId", "name email phone website description");
 
@@ -127,7 +143,6 @@ exports.getOpportunity = async (req, res) => {
   }
 };
 
-
 exports.updateOpportunity = async (req, res) => {
   try {
     const opportunityId = req.params.id;
@@ -141,15 +156,31 @@ exports.updateOpportunity = async (req, res) => {
       });
     }
 
-  
-    if (opportunity.organizationId.toString() !== currentOrganizationId.toString()) {
+    if (
+      opportunity.organizationId.toString() !==
+      currentOrganizationId.toString()
+    ) {
       return res.status(403).json({
         message: "You are not authorized to update this opportunity"
       });
     }
 
-    
-    Object.assign(opportunity, req.body);
+    const allowedFields = [
+      "title",
+      "description",
+      "type",
+      "requiredSkills",
+      "location",
+      "workArrangement",
+      "deadline"
+    ];
+
+    allowedFields.forEach((field) => {
+      if (req.body[field] !== undefined) {
+        opportunity[field] = req.body[field];
+      }
+    });
+
     await opportunity.save();
 
     console.log("Opportunity updated:", opportunityId);
@@ -288,6 +319,27 @@ exports.closeOpportunity = async (req, res) => {
     });
   } catch (err) {
     console.log("Error closing opportunity:", err.message);
+    res.status(500).json({
+      status: "error",
+      message: err.message
+    });
+  }
+};
+exports.getMyOpportunities = async (req, res) => {
+  try {
+    const opportunities = await Opportunity.find({
+      organizationId: req.user._id
+    }).sort({ createdAt: -1 });
+
+    res.status(200).json({
+      status: "success",
+      results: opportunities.length,
+      data: {
+        opportunities: opportunities
+      }
+    });
+  } catch (err) {
+    console.log("Error getting my opportunities:", err.message);
     res.status(500).json({
       status: "error",
       message: err.message

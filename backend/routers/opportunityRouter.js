@@ -5,16 +5,17 @@ const {
   getAllOpportunities, 
   searchOpportunities, 
   getOpportunity, 
+  getMyOpportunities,
   updateOpportunity, 
   deleteOpportunity, 
   publishOpportunity, 
   closeOpportunity 
 } = require("../controllers/opportunityController");
-const { protect, authorize } = require("../controllers/authController");
 
 
 router.get("/", getAllOpportunities);
 router.get("/search", searchOpportunities);
+router.get("/my-opportunities", protect, authorize("Organization"), getMyOpportunities);
 
 
 router.get("/:id", getOpportunity);
