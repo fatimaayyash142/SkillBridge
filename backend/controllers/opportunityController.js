@@ -49,32 +49,24 @@ exports.createOpportunity = async (req, res) => {
   }
 };
 
-exports.getOpportunity = async (req, res) => {
+exports.getAllOpportunities = async (req, res) => {
   try {
-    const opportunityId = req.params.id;
-
-    const opportunity = await Opportunity.findOne({
-      _id: opportunityId,
+    const opportunities = await Opportunity.find({
       status: "Published"
     }).populate(
       "organizationId",
       "name email phone website description"
     );
 
-    if (!opportunity) {
-      return res.status(404).json({
-        message: "Published opportunity not found"
-      });
-    }
-
     res.status(200).json({
       status: "success",
+      results: opportunities.length,
       data: {
-        opportunity: opportunity
+        opportunities: opportunities
       }
     });
   } catch (err) {
-    console.log("Error getting opportunity:", err.message);
+    console.log("Error getting all opportunities:", err.message);
     res.status(500).json({
       status: "error",
       message: err.message

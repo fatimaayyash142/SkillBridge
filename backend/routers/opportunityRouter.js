@@ -1,34 +1,77 @@
 const express = require("express");
+
 const router = express.Router();
-const { 
-  createOpportunity, 
-  getAllOpportunities, 
-  searchOpportunities, 
-  getOpportunity, 
+
+const {
+  createOpportunity,
+  getAllOpportunities,
+  searchOpportunities,
+  getOpportunity,
   getMyOpportunities,
-  updateOpportunity, 
-  deleteOpportunity, 
-  publishOpportunity, 
-  closeOpportunity 
+  updateOpportunity,
+  deleteOpportunity,
+  publishOpportunity,
+  closeOpportunity
 } = require("../controllers/opportunityController");
+
+const {
+  protect,
+  authorize
+} = require("../controllers/authController");
+
 
 
 router.get("/", getAllOpportunities);
-router.get("/search", searchOpportunities);
-router.get("/my-opportunities", protect, authorize("Organization"), getMyOpportunities);
 
+
+router.get("/search", searchOpportunities);
 
 router.get("/:id", getOpportunity);
+router.get(
+  "/my-opportunities",
+  protect,
+  authorize("Organization"),
+  getMyOpportunities
+);
 
 
-router.post("/", protect, authorize("Organization"), createOpportunity);
+router.post(
+  "/",
+  protect,
+  authorize("Organization"),
+  createOpportunity
+);
+
+router.put(
+  "/:id",
+  protect,
+  authorize("Organization"),
+  updateOpportunity
+);
+
+router.delete(
+  "/:id",
+  protect,
+  authorize("Organization"),
+  deleteOpportunity
+);
 
 
-router.put("/:id", protect, authorize("Organization"), updateOpportunity);
-router.delete("/:id", protect, authorize("Organization"), deleteOpportunity);
-router.patch("/:id/publish", protect, authorize("Organization"), publishOpportunity);
+router.patch(
+  "/:id/publish",
+  protect,
+  authorize("Organization"),
+  publishOpportunity
+);
 
 
-router.patch("/:id/close", protect, authorize("Organization"), closeOpportunity);
+
+router.patch(
+  "/:id/close",
+  protect,
+  authorize("Organization"),
+  closeOpportunity
+);
+
 
 module.exports = router;
