@@ -1,0 +1,16 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/applications/6a982744d158393bbe341d92/status
+method: PATCH
+body:
+  type: json
+  content: "{\r
+
+    \  \"status\": \"Under Review\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{supabase_service_role_api_key_0gzo}}"
+order: 4503535782416572

@@ -1,0 +1,9 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/admin/users/6a8dd506406ea951b7b16c17
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0c1d}}"
+order: 4503599624924631

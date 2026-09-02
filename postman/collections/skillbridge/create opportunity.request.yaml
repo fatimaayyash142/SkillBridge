@@ -1,0 +1,36 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/opportunities
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Digital Marketing Internship\",\r
+
+    \  \"description\": \"Internship opportunity for a junior candidate interested in digital marketing.\",\r
+
+    \  \"type\": \"Internship\",\r
+
+    \  \"requiredSkills\": [\r
+
+    \    \"Digital Marketing\",\r
+
+    \    \"Social Media\",\r
+
+    \    \"Excel\"\r
+
+    \  ],\r
+
+    \  \"location\": \"Beirut\",\r
+
+    \  \"workArrangement\": \"Hybrid\",\r
+
+    \  \"deadline\": \"2026-12-31\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{supabase_service_role_api_key_02a2}}"
+order: 3563761592816638

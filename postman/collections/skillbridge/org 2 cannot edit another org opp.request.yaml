@@ -1,0 +1,12 @@
+$kind: http-request
+description: ""
+url: " http://localhost:3000/api/opportunities/6a982204312d3b4e50b39900"
+method: PUT
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{supabase_service_role_api_key_0a8s}}"
+order: 4503599612714117

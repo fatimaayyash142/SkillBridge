@@ -1,0 +1,9 @@
+$kind: http-request
+description: ""
+url: " http://localhost:3000/api/applications/opportunity/6a982204312d3b4e50b39900"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{supabase_service_role_api_key_0gzo}}"
+order: 4503124734555346

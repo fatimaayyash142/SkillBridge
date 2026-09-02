@@ -1,0 +1,7 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/opportunities/search?search=Digital
+method: GET
+queryParams:
+  search: Digital
+order: 4465423454259922

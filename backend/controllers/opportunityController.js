@@ -110,13 +110,17 @@ exports.getOpportunity = async (req, res) => {
   try {
     const opportunityId = req.params.id;
 
-    
-    const opportunity = await Opportunity.findById(opportunityId)
-      .populate("organizationId", "name email phone website description");
+    const opportunity = await Opportunity.findOne({
+      _id: opportunityId,
+      status: "Published"
+    }).populate(
+      "organizationId",
+      "name email phone website description"
+    );
 
     if (!opportunity) {
       return res.status(404).json({
-        message: "Opportunity not found"
+        message: "Published opportunity not found"
       });
     }
 
@@ -134,7 +138,6 @@ exports.getOpportunity = async (req, res) => {
     });
   }
 };
-
 exports.updateOpportunity = async (req, res) => {
   try {
     const opportunityId = req.params.id;

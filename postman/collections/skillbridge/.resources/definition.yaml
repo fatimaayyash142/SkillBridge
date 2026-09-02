@@ -1,5 +1,4 @@
 $kind: collection
-name: skillbridge
 variables:
   - key: json_web_token_1dmy
     secret: true
@@ -8,5 +7,29 @@ variables:
     secret: true
     disabled: false
   - key: json_web_token_0zy8
+    secret: true
+    disabled: false
+  - key: supabase_service_role_api_key_02a2
+    secret: true
+    disabled: false
+  - key: json_web_token_0zzm
+    secret: true
+    disabled: false
+  - key: supabase_service_role_api_key_0zzm
+    secret: true
+    disabled: false
+  - key: supabase_service_role_api_key_0gzo
+    secret: true
+    disabled: false
+  - key: supabase_service_role_api_key_0a8s
+    secret: true
+    disabled: false
+  - key: supabase_service_role_api_key_0c1d
+    secret: true
+    disabled: false
+  - key: json_web_token_0gzo
+    secret: true
+    disabled: false
+  - key: json_web_token_0c1d
     secret: true
     disabled: false

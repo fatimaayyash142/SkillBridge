@@ -1,0 +1,28 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/opportunities
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Unauthorized Test Opportunity\",\r
+
+    \  \"description\": \"This request is used to test role authorization.\",\r
+
+    \  \"type\": \"Internship\",\r
+
+    \  \"requiredSkills\": [\"Excel\"],\r
+
+    \  \"location\": \"Beirut\",\r
+
+    \  \"workArrangement\": \"Remote\",\r
+
+    \  \"deadline\": \"2026-12-31\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0zzm}}"
+order: 4503596014703362

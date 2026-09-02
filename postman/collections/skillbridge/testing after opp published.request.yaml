@@ -1,0 +1,12 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/opportunities/6a982204312d3b4e50b39900/publish
+method: PATCH
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{supabase_service_role_api_key_02a2}}"
+order: 4133187410062486

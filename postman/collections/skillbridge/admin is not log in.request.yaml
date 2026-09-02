@@ -1,0 +1,5 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/admin/users
+method: GET
+order: 4503599616225053

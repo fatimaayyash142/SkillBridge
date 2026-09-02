@@ -1,0 +1,7 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/opportunities/search?search=XYZNOTFOUND123
+method: GET
+queryParams:
+  search: XYZNOTFOUND123
+order: 4483533292111686

@@ -1,0 +1,18 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/applications
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"opportunityId\": \"6a982204312d3b4e50b39900\",\r
+
+    \  \"coverLetter\": \"I am interested in this opportunity and would like to apply.\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0zzm}}"
+order: 4493911609357898

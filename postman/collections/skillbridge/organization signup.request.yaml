@@ -1,0 +1,20 @@
+$kind: http-request
+description: ""
+url: " http://localhost:3000/api/auth/signup"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"Test Organization A\",\r
+
+    \  \"email\": \"organizationA@test.com\",\r
+
+    \  \"password\": \"Password123!\",\r
+
+    \  \"passwordConfirm\": \"Password123!\",\r
+
+    \  \"role\": \"Organization\"\r
+
+    }"
+order: 3040817252898169

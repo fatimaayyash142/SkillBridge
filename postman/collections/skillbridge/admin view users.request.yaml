@@ -1,0 +1,9 @@
+$kind: http-request
+description: ""
+url: http://localhost:3000/api/admin/users
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{supabase_service_role_api_key_0c1d}}"
+order: 4503599621254415
